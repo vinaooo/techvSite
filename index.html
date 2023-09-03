@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techv.dev</title>
+    <!-- Link to the 'Ubuntu' font family -->
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Link to the external CSS file for styling -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Techv.dev</h1>
+        <!-- Placeholder elements for dynamic content -->
+        <p id="string1"></p>
+        <p id="string2"></p>
+        <p id="string3" class="highlighted-text"></p>
+        <div class="square-container">
+            <!-- Square 1 -->
+            <div class="square" id="divClicavel">
+                <a href="https://vpass.techv.dev">
+                    <div class="image-wrapper" style="border-radius: 10px;">
+                        <!-- Image for VPass -->
+                        <img src="https://vpass.techv.dev/icons/Icon-maskable-512.png" alt="VPass">
+                        <!-- Placeholder for dynamic text -->
+                        <div id="string4" class="text-inside"></div>
+                    </div>
+
+                </a>
+                <div class="code-wrapper">
+                    <!-- Link to Google Play Store with badge -->
+                    <a
+                        href='https://play.google.com/store/apps/details?id=dev.techv.vpass&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+                        <img id="googlePlayBadge" alt='Available on Google Play'
+                            src='https://play.google.com/intl/pt-BR/badges/static/images/badges/pt-br_badge_web_generic.png' />
+                    </a>
+                    <!-- Larger GitHub banner -->
+                    <a href='https://github.com/yourgithubprofile'>
+                        <img alt='Github Repo' class="github-banner"
+                            src='https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white' />
+                    </a>
+
+                </div>
+
+            </div>
+            <!-- Square 2 -->
+            <div class="square">
+                <div class="image-wrapper">
+                    <!-- Placeholder image -->
+                    <img src="https://via.placeholder.com/150" alt="Example Image">
+                    <!-- Placeholder for dynamic text -->
+                    <p id="string5" class="text-inside"></p>
+                </div>
+            </div>
+            <!-- Square 3 -->
+            <div class="square">
+                <div class="image-wrapper">
+                    <!-- Placeholder image -->
+                    <img src="https://via.placeholder.com/150" alt="Example Image">
+                    <!-- Placeholder for dynamic text -->
+                    <p id="string6" class="text-inside"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-fixed">
+        <div class="footer-badges">
+            <!-- GitHub badge and link with reduced size and white color -->
+            <a href="https://github.com/vinaooo/" target="_blank">
+                <img src="assets/icons/github.svg" alt="GitHub" style="width: 32px; height: 32px; filter: invert(1);">
+            </a>
+            <!-- Add space between icons with a <span> element -->
+            <span class="icon-space"></span>
+            <!-- LinkedIn badge and link with reduced size and white color -->
+            <a href="https://www.linkedin.com/in/vinicius-pedrinho/" target="_blank">
+                <img src="assets/icons/linkedin.svg" alt="LinkedIn"
+                    style="width: 32px; height: 32px; filter: invert(1);">
+            </a>
+            <!-- Add space between icons with a <span> element -->
+            <span class="icon-space"></span>
+            <!-- Telegram badge and link with reduced size and white color -->
+            <a href="https://t.me/vinaoooo" target="_blank">
+                <img src="assets/icons/telegram.svg" alt="Telegram"
+                    style="width: 32px; height: 32px; filter: invert(1);">
+            </a>
+        </div>
+    </footer>
+
+
+    <script>
+        // Function to get the user's browser language
+        function getBrowserLanguage() {
+            // You can uncomment the line below to set a specific language for testing
+            // return 'es-ES'
+            return navigator.language || navigator.userLanguage || 'en-US';
+        }
+
+        // Function to change the language based on user's browser language
+        function changeLanguage(language) {
+            // Fetch and update translations based on the selected language
+            fetch(`locale/translations_${language}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    // Update content with dynamic translations
+                    document.getElementById('string1').textContent = data.phrase1;
+                    document.getElementById('string2').textContent = data.phrase2;
+                    document.getElementById('string3').textContent = data.phrase3;
+                    document.getElementById('string4').textContent = data.phrase4;
+                    document.getElementById('string5').textContent = data.phrase5;
+                    document.getElementById('string6').textContent = data.phrase6;
+                    document.getElementById('googlePlayBadge').src = data.googlePlayBadgeSrc;
+                    document.getElementById('googlePlayBadge').alt = data.googlePlayBadgeAlt;
+                })
+                .catch(error => console.error('Error while loading translations:', error));
+        }
+
+        // Get the user's initial language and change the language accordingly
+        var initialLanguage = getBrowserLanguage();
+        changeLanguage(initialLanguage);
+    </script>
+</body>
+
+</html>
